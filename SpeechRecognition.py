@@ -10,7 +10,11 @@ with sr.Microphone() as source:
    # listen for 5 seconds and create the ambient noise energy level  
    r.adjust_for_ambient_noise(source, duration=5)  
    print("Say something!")  
-   audio = r.listen(source)  
+   audio = r.listen(source)
+
+# Record onto a WAV File
+with open("microphone-results.wav", "wb") as f:
+    f.write(audio.get_wav_data())
    
 # recognize speech using Sphinx
 try:
